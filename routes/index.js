@@ -6,7 +6,7 @@ router.get('/', function (req, res, next) {
 
     var context = {}
     context.title = 'About'
-    context.description = 'For our adventurous pc gamers, we encourage you to explore this database and find what games are similar to your favorites in order to further expand your gaming library! Feel free to click on each tab to search'
+    context.description = 'For our adventurous pc gamers, we encourage you to explore this database and find what games are similar to your favorites in order to further expand your gaming library! Feel free to click on each tab to search games, make reviews, examine developers, explore genres, etc.'
 
 
     res.render('index', context);
