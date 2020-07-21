@@ -13,6 +13,7 @@ add reviews
 delete reviews
 update reviews
 add developers (non user)
+search developers
 update devs? (if name changes)
 add games (non user)
 delete games (to satisfy M:M delete)

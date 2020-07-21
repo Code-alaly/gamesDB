@@ -26,23 +26,23 @@ router.get('/games', function (req, res, next) {
 
 });
 // gets the review page
-router.get('/review', function (req, res, next) {
+router.get('/reviews', function (req, res, next) {
     var context = {}
     context.title = 'Reviews'
     context.description = 'This page will be for showing the reviews that we have, plus adding some on'
 
 
-    res.render('review', context);
+    res.render('reviews', context);
 });
 // gets the dev page
-router.get('/dev', function (req, res, next) {
+router.get('/devs', function (req, res, next) {
     var context = {}
     context.title = 'Developers'
     context.description = 'This page will be for showing the Developers that we have, I guess we need to be able to' +
         'remove them as well?'
 
 
-    res.render('review', context);
+    res.render('devs', context);
 });
 // get genres
 
@@ -52,7 +52,7 @@ router.get('/genres', function (req, res, next) {
     context.description = 'This page will be for showing the Genres that we have.'
 
 
-    res.render('review', context);
+    res.render('genres', context);
 });
 
 module.exports = router;
