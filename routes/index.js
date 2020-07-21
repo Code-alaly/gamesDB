@@ -38,8 +38,7 @@ router.get('/reviews', function (req, res, next) {
 router.get('/devs', function (req, res, next) {
     var context = {}
     context.title = 'Developers'
-    context.description = 'This page will be for showing the Developers that we have, I guess we need to be able to' +
-        'remove them as well?'
+    context.description = 'This page shows the Developers. \n You can search for developers and update names if they change.'
 
 
     res.render('devs', context);
@@ -49,7 +48,7 @@ router.get('/devs', function (req, res, next) {
 router.get('/genres', function (req, res, next) {
     var context = {}
     context.title = 'Genres'
-    context.description = 'This page will be for showing the Genres that we have.'
+    context.description = 'This page shows different genres. This includes the Genre Name and whether multiplayer is possible for that game.'
 
 
     res.render('genres', context);
