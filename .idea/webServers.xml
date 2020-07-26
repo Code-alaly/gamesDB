@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f58280fc-3fb0-4130-a94b-01365d76b561" name="access.engr.oregonstate.edu" url="http://access.engr.oregonstate.edu">
+        <fileTransfer rootFolder="/nfs/stak/users/dubiszd" accessType="SFTP" host="access.engr.oregonstate.edu" port="22" sshConfigId="30d147d0-60f8-48f1-bdab-615cb9d2686c" sshConfig="dubiszd@access.engr.oregonstate.edu:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
