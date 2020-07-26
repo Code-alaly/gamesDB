@@ -1,3 +1,5 @@
+var hbs = require('express-handlebars');
+
 var express = require('express');
 var router = express.Router();
 
