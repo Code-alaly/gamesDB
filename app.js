@@ -89,6 +89,15 @@ app.get('/genres', function (req, res, next) {
     res.render('genres', context);
 });
 
+app.get('/games_genres', function (req, res, next) {
+    var context = {}
+    context.title = 'Games-Genres'
+    context.description = 'This page shows video games and their corresponding genre(s).'
+
+
+    res.render('games_genres', context);
+});
+
 // error handler
 
 

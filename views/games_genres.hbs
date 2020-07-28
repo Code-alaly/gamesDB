@@ -1,0 +1,85 @@
+<div class="jumbotron text-center">
+    <h1>{{title}}</h1>
+    <p>{{description}}</p>
+</div>
+<!-- Search form -->
+<div class="md-form mt-0">
+
+    <input class="form-control" type="text" placeholder="Search for Video Games or Genres by Name" aria-label="Search">
+</div>
+<table class="table table-striped table-responsive-md btn-table">
+    <thead>
+    <tr>
+        <th scope="col">Video Game</th>
+        <th scope="col">Genre 1</th>
+        <th scope="col">Genre 2</th>
+        <th scope="col">Genre 3</th>
+        <th scope="col">Genre 4</th>
+        <th scope="col">Genre 5</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">Mario</th>
+        <td>FPS</td>
+        <td>Single Player</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>
+            <button type="button" class="btn btn-info btn-rounded btn-sm m-0"></button>
+        </td>
+
+
+    </tr>
+    <tr>
+        <th scope="row">Splinter Cell</th>
+        <td>RPG</td>
+        <td>Multiplayer</td>
+        <td>Coop</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>
+            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">Halo</th>
+        <td>Platformer</td>
+        <td>Futuristic</td>
+        <td>Multiplayer</td>
+        <td>Splitscreen</td>
+        <td>N/A</td>
+        <td>
+            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<h3>Form to Link a Video Game to its Genres</h3>
+
+<form>
+    <div class="form-group">
+        <label  for="exampleFormControlSelect1">Video Game</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+            <option>These will be populated by games currently in the database</option>
+            <option>Mario</option>
+            <option>Splinter Cell</option>
+            <option>Etc.</option>
+
+        </select>
+    </div>
+<!--    Find something to do a select all that apply rather than a single option for multiple genres-->
+    <div class="form-group">
+        <label for="exampleFormControlSelect2">Genre</label>
+        <select class="form-control" id="exampleFormControlSelect2">
+            <option>These will be genres already in the database</option>
+            <option>FPS</option>
+            <option>Single Player</option>
+            <option>RPG</option>
+            <option>Futuristic</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add New Link</button>
+</form>
