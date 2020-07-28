@@ -5,32 +5,28 @@
 
 <!-- Search Bar -->
 <div class="md-form mt-0">
-    <input class="form-control" type="text" placeholder="Search by Genre Name or Multiplayer Capability" aria-label="Search">
+    <input class="form-control" type="text" placeholder="Search by Genre Name or Description" aria-label="Search">
 </div>
 
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">GameID (will be replaced with game name for readability)</th>
-        <th scope="col">Genre Name</th>
-        <th scope="col">Multiplayer Capability?</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Description</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th scope="row">1</th>
-        <td>FPS</td>
-        <td>Yes</td>
+        <th scope="row">FPS</th>
+        <td>Stands for "first-person shooter". Essentially where guns are involved from the natural point of view</td>
     </tr>
     <tr>
-        <th scope="row">2</th>
-        <td>RPG</td>
-        <td>No</td>
+        <th scope="row">Futuristic</th>
+        <td>This genre means that the game's animations are from futuristic elements such as aliens, robots, etc.</td>
     </tr>
     <tr>
-        <th scope="row">3</th>
-        <td>Platformer</td>
-        <td>Yes</td>
+        <th scope="row">Splitscreen</th>
+        <td>This genre means the game can be played on a split screen locally between 2+ players</td>
     </tr>
     </tbody>
 </table>
@@ -39,25 +35,12 @@
 
 <form>
     <div class="form-group">
-        <label  for="exampleFormControlSelect1">Video Game</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-            <option>These will be populated by games currently in the database</option>
-            <option>Mario</option>
-            <option>Splinter Cell</option>
-            <option>Etc.</option>
-
-        </select>
-    </div>
-    <div class="form-group">
         <label for="exampleFormControlSelect1">Genre Name</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
     </div>
     <div class="form-group">
-        <label for="exampleFormControlTextarea1">Multiplayer Capability?</label>
-        <label for="exampleFormControlSelect2"></label><select class="form-control" id="exampleFormControlSelect2">
-            <option>Yes</option>
-            <option>No</option>
-        </select>
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Add New Genre</button>
 </form>

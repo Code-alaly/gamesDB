@@ -27,6 +27,15 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+app.get('/games_genres', function (req, res, next) {
+    var context = {}
+    context.title = 'Games-Genres'
+    context.description = 'This page shows video games and their corresponding genre(s).'
+
+
+    res.render('games_genres', context);
+});
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
