@@ -48,7 +48,7 @@ router.get('/devs', function (req, res, next) {
 router.get('/genres', function (req, res, next) {
     var context = {}
     context.title = 'Genres'
-    context.description = 'This page shows different genres. This includes the Genre Name and whether multiplayer is possible for that game.'
+    context.description = 'This page shows different genres. This includes the Genre name and a description.'
 
 
     res.render('genres', context);
