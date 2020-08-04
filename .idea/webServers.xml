@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4c6434a8-228a-4daf-b42b-5f0af6b42971" name="a_server" url="http://flip3.oregonstate.edu">
+        <fileTransfer rootFolder="/nfs/stak/users/dubiszd" accessType="SFTP" host="access.engr.oregonstate.edu" port="22" sshConfigId="e4ae7890-6e4f-4fa8-8bbb-72ec5020a2fe" sshConfig="dubiszd@access.engr.oregonstate.edu:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

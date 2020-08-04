@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="access.engr.oregonstate.edu" id="e4ae7890-6e4f-4fa8-8bbb-72ec5020a2fe" port="22" nameFormat="DESCRIPTIVE" username="dubiszd" />
+    </configs>
+  </component>
+</project>

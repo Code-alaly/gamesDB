@@ -1,4 +1,5 @@
 var express = require('express');
+const mysql = require("../app");
 var router = express.Router();
 
 /* GET home page. */
@@ -13,6 +14,21 @@ router.get('/', function (req, res, next) {
 
 
 });
+
+router.get('/testin',function(req,res,next){
+    var context = {};
+
+                mysql.pool.query('SELECT * FROM Video_games', function(err, rows, fields){
+                    results = rows
+                    context.results = results
+                    context.title = 'Test Database Page'
+                    context.about = 'seeing how this goes'
+                    res.render('testin',context);
+                });
+            });
+//     });
+// });
+
 // Gets the games page
 router.get('/games', function (req, res, next) {
 
@@ -64,5 +80,14 @@ router.get('/games_genres', function (req, res, next) {
 
     res.render('games_genres', context);
 });
+
+// router.get('/test', function (req, res, next) {
+//     var context = {}
+//     context.title = 'Test'
+//     context.description = 'This is a test page'
+//
+//
+//     res.render('test', context);
+// });
 
 module.exports = router;
