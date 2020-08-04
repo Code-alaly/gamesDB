@@ -15,19 +15,21 @@
         <th scope="col">Description</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-        <th scope="row">FPS</th>
-        <td>Stands for "first-person shooter". Essentially where guns are involved from the natural point of view</td>
-    </tr>
-    <tr>
-        <th scope="row">Futuristic</th>
-        <td>This genre means that the game's animations are from futuristic elements such as aliens, robots, etc.</td>
-    </tr>
-    <tr>
-        <th scope="row">Splitscreen</th>
-        <td>This genre means the game can be played on a split screen locally between 2+ players</td>
-    </tr>
+    <tbody id="myTable">
+    {{#each results}}
+
+        <tr>
+            <td>
+                {{this.name}}
+            </td>
+            <td>
+                {{this.description}}
+            </td>
+            <td>
+                <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
+            </td>
+        </tr>
+    {{/each}}
     </tbody>
 </table>
 

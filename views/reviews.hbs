@@ -6,49 +6,33 @@
 <table class="table table-striped table-responsive-md btn-table">
     <thead>
     <tr>
-        <th scope="col">Game_ID</th>
+        <th scope="col">Game Name</th>
         <th scope="col">Content</th>
         <th scope="col">Rating</th>
         <th scope="col">Edit</th>
         <th scope="col">Remove</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mario</td>
-        <td>4/5</td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Edit</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
-        </td>
-
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Splinter Cell</td>
-        <td>3/5</td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Edit</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>My python implementation of xiangqi in 162</td>
-        <td>6/5</td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Edit</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
-        </td>
-
-    </tr>
+    <tbody id="myTable">
+    {{#each results}}
+        <tr>
+            <td>
+                {{this.game}}
+            </td>
+            <td>
+                {{this.content}}
+            </td>
+            <td>
+                {{this.rating}}
+            </td>
+            <td>
+                <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Edit Name</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
+            </td>
+        </tr>
+    {{/each}}
     </tbody>
 </table>
 <form>
@@ -56,11 +40,9 @@
     <div class="form-group">
         <label  for="exampleFormControlSelect1">Video Game</label>
         <select class="form-control" id="exampleFormControlSelect1">
-            <option>These will be populated by games currently in the database</option>
-            <option>Mario</option>
-            <option>Splinter Cell</option>
-            <option>Etc.</option>
-
+            {{#each results}}
+                <option>{{this.game}}</option>
+            {{/each}}
         </select>
     </div>
     <div class="form-group">

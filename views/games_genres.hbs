@@ -11,50 +11,26 @@
     <thead>
     <tr>
         <th scope="col">Video Game</th>
-        <th scope="col">Genre 1</th>
-        <th scope="col">Genre 2</th>
-        <th scope="col">Genre 3</th>
-        <th scope="col">Genre 4</th>
-        <th scope="col">Genre 5</th>
+        <th scope="col">Genre</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-        <th scope="row">Mario</th>
-        <td>FPS</td>
-        <td>Single Player</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
-        </td>
-
-
-    </tr>
-    <tr>
-        <th scope="row">Splinter Cell</th>
-        <td>RPG</td>
-        <td>Multiplayer</td>
-        <td>Coop</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">Halo</th>
-        <td>Platformer</td>
-        <td>Futuristic</td>
-        <td>Multiplayer</td>
-        <td>Splitscreen</td>
-        <td>N/A</td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
-        </td>
-
-    </tr>
+    <tbody id="myTable">
+    {{#each results}}
+        <tr>
+            <td>
+                {{this.game}}
+            </td>
+            <td>
+                {{this.genre}}
+            </td>
+            <td>
+                <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Edit Name</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
+            </td>
+        </tr>
+    {{/each}}
     </tbody>
 </table>
 <h3>Form to Link a Video Game to its Genres</h3>
@@ -63,22 +39,18 @@
     <div class="form-group">
         <label  for="exampleFormControlSelect1">Video Game</label>
         <select class="form-control" id="exampleFormControlSelect1">
-            <option>These will be populated by games currently in the database</option>
-            <option>Mario</option>
-            <option>Splinter Cell</option>
-            <option>Etc.</option>
-
+            {{#each results}}
+                <option>{{this.game}}</option>
+            {{/each}}
         </select>
     </div>
 <!--    Find something to do a select all that apply rather than a single option for multiple genres-->
     <div class="form-group">
         <label for="exampleFormControlSelect2">Genre</label>
         <select class="form-control" id="exampleFormControlSelect2">
-            <option>These will be genres already in the database</option>
-            <option>FPS</option>
-            <option>Single Player</option>
-            <option>RPG</option>
-            <option>Futuristic</option>
+            {{#each results}}
+                <option>{{this.genre}}</option>
+            {{/each}}
         </select>
     </div>
     <button type="submit" class="btn btn-primary">Add New Link</button>
