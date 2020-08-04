@@ -30,7 +30,7 @@
                 {{this.releaseYear}}
             </td>
             <td>
-                <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
+                <button type="button" class="btn btn-info btn-rounded btn-sm m-0" action="games" >Remove</button>
             </td>
         </tr>
     {{/each}}
@@ -38,18 +38,18 @@
 </table>
 <h3>Form to Add a New Video Game</h3>
 
-<form>
+<form action="games" method="post" onsubmit="window.location.reload()">
     <div class="form-group">
         <label for="exampleFormControlSelect1">Name</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+        <textarea class="form-control" id="name" rows="1" name="name"></textarea>
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Copies Sold</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+        <textarea class="form-control" id="copies" rows="1" name="copies"></textarea>
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Release Year</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+        <textarea class="form-control" id="year" name="year" rows="1"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Add New Video Game</button>
 </form>

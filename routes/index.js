@@ -15,24 +15,24 @@ router.get('/', function (req, res, next) {
 
 });
 
-router.get('/testin',function(req,res,next){
+router.get('/testin', function (req, res, next) {
     var context = {};
 
-                mysql.pool.query('SELECT * FROM Video_games', function(err, rows, fields){
-                    results = rows
-                    context.results = results
-                    context.title = 'Test Database Page'
-                    context.about = 'seeing how this goes'
-                    res.render('testin',context);
-                });
-            });
+    mysql.pool.query('SELECT * FROM Video_games', function (err, rows, fields) {
+        results = rows
+        context.results = results
+        context.title = 'Test Database Page'
+        context.about = 'seeing how this goes'
+        res.render('testin', context);
+    });
+});
 
 
 // Gets the games page
 router.get('/games', function (req, res, next) {
 
     var context = {}
-    mysql.pool.query('SELECT * FROM Video_games', function(err, rows, fields){
+    mysql.pool.query('SELECT * FROM Video_games', function (err, rows, fields) {
         results = rows
         context.results = results
         context.title = 'Video Games'
@@ -41,10 +41,30 @@ router.get('/games', function (req, res, next) {
     });
 });
 
+router.post('/games', (req, res, next) => {
+        let body = req.body
+        let name = body.name
+        let copies = body.copies
+        let year = body.year
+        let values = "'" + name + "'," + copies + ',' + year
+        let query = 'INSERT INTO Video_games(name, releaseYear, copiesSold) VALUES (' + values + ');'
+        mysql.pool.query(query, function (error, rows) {
+            if (error) {
+                console.log(error)
+                return
+            }
+            // res.render('games')
+        })
+    }
+)
 // gets the review page
+
 
 router.get('/reviews', function (req, res, next) {
     var context = {}
+    mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = Reviews.gameID) as game, content, rating FROM Reviews', function(err, rows, fields) {
+        results = rows
+        context.results = results
     mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = Reviews.gameID) as game, content, rating FROM Reviews', function(err, rows, fields) {
         results = rows
         context.results = results
