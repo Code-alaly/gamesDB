@@ -17,33 +17,23 @@
     </tr>
     </thead>
     <tbody id="myTable">
-    <tr>
-        <th scope="row">Mario</th>
-        <td>45,000,000,000</td>
-        <td>1978</td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
-        </td>
+    {{#each results}}
 
-
-    </tr>
-    <tr>
-        <th scope="row">Splinter Cell</th>
-        <td>50,000</td>
-        <td>2003</td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">Halo</th>
-        <td>400,000</td>
-        <td>2008</td>
-        <td>
-            <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
-        </td>
-
-    </tr>
+        <tr>
+            <td>
+                {{this.name}}
+            </td>
+            <td>
+                {{this.copiesSold}}
+            </td>
+            <td>
+                {{this.releaseYear}}
+            </td>
+            <td>
+                <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
+            </td>
+        </tr>
+    {{/each}}
     </tbody>
 </table>
 <h3>Form to Add a New Video Game</h3>

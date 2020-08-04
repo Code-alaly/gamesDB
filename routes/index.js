@@ -26,18 +26,22 @@ router.get('/testin',function(req,res,next){
                     res.render('testin',context);
                 });
             });
-//     });
-// });
+
 
 // Gets the games page
 router.get('/games', function (req, res, next) {
 
     var context = {}
-    context.title = 'Video Games'
-    context.description = 'This page will be for showing the video games that we have in the database'
+    mysql.pool.query('SELECT * FROM Video_games', function(err, rows, fields){
+        results = rows
+        context.results = results
+        context.title = 'Video Games'
+        context.description = 'This page will be for showing the video games that we have in the database'
+        res.render('games', context);
+    });
 
 
-    res.render('games', context);
+
 
 
 });
