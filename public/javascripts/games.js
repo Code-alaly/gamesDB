@@ -4,9 +4,9 @@ $(function () {
     var $name = $('name');
     var $copies = $('copies')
     var $year = $('year')
-    var template = Handlebars.compile()
-    var tableTemp ="<tr><td>{{name}}</td><td>{{copiesSold}}</td><td>{{releaseYear}}</td><td>" +
-        "<button>Remove</button></td></tr>"
+    // var template = Handlebars.compile()
+    // var tableTemp ="<tr><td>{{name}}</td><td>{{copiesSold}}</td><td>{{releaseYear}}</td><td>" +
+    //     "<button>Remove</button></td></tr>"
 
 
 

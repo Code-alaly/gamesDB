@@ -38,7 +38,7 @@ router.get('/games', function (req, res, next) {
         context.results = results
         context.title = 'Video Games'
         context.description = 'This page will be for showing the video games that we have in the database'
-        res.render('games', context);
+        res.send('games', context);
     });
 });
 
