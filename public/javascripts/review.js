@@ -1,14 +1,13 @@
 $(function () {
     var $table = $('.dbTable');
-    var $name = $('name');
-    var $copies = $('copies')
-    var $year = $('year')
+    var $name = $('game');
+    var $comment = $('comment')
+    var $rate = $('rate')
     var handleTemplate = "" +
         "<tr>" +
-        "<button>Remove</button>"+
-        "<td>{{name}}</td>" +
-        "<td>{{releaseYear}}</td>" +
-        "<td>{{copiesSold}}</td>" +
+        "<td>{{gameID}}</td>" +
+        "<td>{{content}}</td>" +
+        "<td>{{rating}}</td>" +
         "<td><button type='button' class='btn btn-info btn-rounded btn-sm m-0 remove' data-id='{{gameID}}'>Remove</button></td>"+
         "</tr>"
 

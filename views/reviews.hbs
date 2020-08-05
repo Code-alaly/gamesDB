@@ -13,8 +13,8 @@
         <th scope="col">Remove</th>
     </tr>
     </thead>
-    <tbody id="myTable">
-    {{#each results}}
+    <tbody id="myTable" class="dbTable">
+    <template  id="reviews">
         <tr>
             <td>
                 {{this.game}}
@@ -32,14 +32,14 @@
                 <button type="button" class="btn btn-info btn-rounded btn-sm m-0">Remove</button>
             </td>
         </tr>
-    {{/each}}
+    </template>
     </tbody>
 </table>
 <form>
 
     <div class="form-group">
         <label  for="exampleFormControlSelect1">Video Game</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select class="form-control" id="game">
             {{#each results}}
                 <option>{{this.game}}</option>
             {{/each}}
@@ -47,7 +47,7 @@
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect2">Rating</label>
-        <select class="form-control" id="exampleFormControlSelect2">
+        <select class="form-control" id="rate" >
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -57,7 +57,7 @@
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Comments</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <textarea class="form-control" id="comment" rows="3"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
