@@ -49,7 +49,12 @@ router.get('/all-games', function (req, res, next) {
 })
 
 router.delete('/games-del', function (req, res, next){
-    req
+    query = `delete from Video_games where gameID = ${req.body.id}`
+    mysql.pool.query(query, function (err, rows) {
+        if (err) {
+            console.log(err)
+        }
+    })
 })
 
 
