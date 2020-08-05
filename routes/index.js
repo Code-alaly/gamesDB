@@ -48,6 +48,10 @@ router.get('/all-games', function (req, res, next) {
     })
 })
 
+router.delete('/games-del', function (req, res, next){
+    req
+})
+
 
 
 router.post('/games', (req, res, next) => {

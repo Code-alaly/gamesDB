@@ -4,14 +4,17 @@ $(function () {
     var $name = $('name');
     var $copies = $('copies')
     var $year = $('year')
-
+    var handleTemplate = "" +
+    "<tr>" +
+        "<button>Remove</button>"+
+        "<td>{{name}}</td>" +
+        "<td>{{releaseYear}}</td>" +
+        "<td>{{copiesSold}}</td>" +
+        "<td><button type='button' class='btn btn-info btn-rounded btn-sm m-0 remove' data-id='{{gameID}}'>Remove</button></td>"+
+        "</tr>"
 
     function addGame(game) {
-        $table.append($("<tr>")
-            .append($("<td>").append(game.name))
-            .append($("<td>").append(game.releaseYear))
-            .append($("<td>").append(game.copiesSold))
-            .append($("<buttontype=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0\" action=\"games\" >").append('Remove')))
+        $table.append(Mustache.render(handleTemplate, game))
     }
 
     $.ajax({
@@ -44,5 +47,15 @@ $(function () {
             .fail(function () {
                 alert('could not add order')
             })
+    })
+    $table.on('click', '.remove',function (){
+        var $tr = $(this).closest('tr')
+        $.ajax({
+            type: 'delete',
+            url: '/games-del',
+            data: {id: $(this).attr('data-id')}
+
+        })
+            .done($tr.remove())
     })
 })
