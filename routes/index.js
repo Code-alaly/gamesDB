@@ -1,7 +1,6 @@
 var express = require('express');
 const mysql = require("../app");
 var router = express.Router();
-var mustache = require('mustache')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {

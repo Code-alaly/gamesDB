@@ -1,43 +1,30 @@
 
 $(function () {
-    var $table = $('dbTable');
+    var $table = $('.dbTable');
     var $name = $('name');
     var $copies = $('copies')
     var $year = $('year')
-    // var template = Handlebars.compile()
-    // var tableTemp ="<tr><td>{{name}}</td><td>{{copiesSold}}</td><td>{{releaseYear}}</td><td>" +
-    //     "<button>Remove</button></td></tr>"
 
 
-
-        function addGame(game) {
-            // $('dbTable').append($("<tr>")
-            //     .append($("<td>").append(game.name))
-            //     .append($("<td>").append(game.copiesSold))
-            //     .append($("<td>").append(game.year))
-            //     .append($("<button>"))
-            var template = $('#games-temp').html()
-
-            var templateScript = Handlebars.compile(template)
-
-            var html = templateScript(games)
-            $('dbTable').append(html)
-
-        }
+    function addGame(game) {
+        $table.append($("<tr>")
+            .append($("<td>").append(game.name))
+            .append($("<td>").append(game.releaseYear))
+            .append($("<td>").append(game.copiesSold))
+            .append($("<buttontype=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0\" action=\"games\" >").append('Remove')))
+    }
 
     $.ajax({
         type: 'GET',
-        url: '/all-games'
-    })
-        .done(function (games) {
-
+        url: '/all-games',
+        success: function (games){
             $.each(games, function (i, game) {
-                addGame(game)
-            })
+
+            addGame(game)
         })
-        .fail(function () {
-            alert('error has been had!')
-        })
+    }
+    })
+
 
     $('#addGame').on('click', () => {
         var game = {
