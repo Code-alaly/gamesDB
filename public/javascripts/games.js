@@ -11,19 +11,26 @@ $(function () {
 
 
         function addGame(game) {
-            $table.append($("<tr>")
-                .append($("<td>").append(game.name))
-                .append($("<td>").append(game.copiesSold))
-                .append($("<td>").append(game.year))
-                .append($("<button>"))
-            )
+            // $('dbTable').append($("<tr>")
+            //     .append($("<td>").append(game.name))
+            //     .append($("<td>").append(game.copiesSold))
+            //     .append($("<td>").append(game.year))
+            //     .append($("<button>"))
+            var template = $('#games-temp').html()
+
+            var templateScript = Handlebars.compile(template)
+
+            var html = templateScript(games)
+            $('dbTable').append(html)
+
         }
 
     $.ajax({
         type: 'GET',
-        url: '/games',
+        url: '/all-games'
     })
         .done(function (games) {
+
             $.each(games, function (i, game) {
                 addGame(game)
             })

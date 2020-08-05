@@ -33,14 +33,23 @@ router.get('/testin', function (req, res, next) {
 router.get('/games', function (req, res, next) {
 
     var context = {}
-    mysql.pool.query('SELECT * FROM Video_games', function (err, rows, fields) {
-        results = rows
-        context.results = results
+
         context.title = 'Video Games'
         context.description = 'This page will be for showing the video games that we have in the database'
-        res.send('games', context);
-    });
+        res.render('games',context);
+
 });
+
+router.get('/all-games', function (req, res, next) {
+    mysql.pool.query('SELECT * FROM Video_games', function (err, rows, fields) {
+        if (err) {
+            res.send(err)
+        }
+        res.send(rows)
+    })
+})
+
+
 
 router.post('/games', (req, res, next) => {
         let body = req.body
@@ -52,9 +61,9 @@ router.post('/games', (req, res, next) => {
         mysql.pool.query(query, function (error, rows) {
             if (error) {
                 console.log(error)
-                return
-            }
 
+            }
+            res.send(rows)
         })
     }
 )

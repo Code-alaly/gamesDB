@@ -9,7 +9,7 @@
                                         placeholder="Search for Video Games by Name, copies sold or release year">
 
 </div>
-<table class="table table-striped table-responsive-md btn-table" id="dbTable">
+<table class="table table-striped table-responsive-md btn-table" id="Table">
     <thead>
     <tr>
         <th scope="col">Name</th>
@@ -17,24 +17,8 @@
         <th scope="col">Release Year</th>
     </tr>
     </thead>
-    <tbody id="myTable">
-    {{#each results}}
+    <tbody id="dbTable">
 
-        <tr>
-            <td>
-                {{this.name}}
-            </td>
-            <td>
-                {{this.copiesSold}}
-            </td>
-            <td>
-                {{this.releaseYear}}
-            </td>
-            <td>
-                <button type="button" class="btn btn-info btn-rounded btn-sm m-0" action="games" >Remove</button>
-            </td>
-        </tr>
-    {{/each}}
     </tbody>
 </table>
 <h3>Form to Add a New Video Game</h3>
@@ -65,4 +49,24 @@
             });
         });
     });
+</script>
+
+<script id="games-temp" type="text/x-handlebars-template">
+    {{#each results}}
+
+        <tr>
+            <td>
+                {{this.name}}
+            </td>
+            <td>
+                {{this.copiesSold}}
+            </td>
+            <td>
+                {{this.releaseYear}}
+            </td>
+            <td>
+                <button type="button" class="btn btn-info btn-rounded btn-sm m-0" action="games" >Remove</button>
+            </td>
+        </tr>
+    {{/each}}
 </script>
