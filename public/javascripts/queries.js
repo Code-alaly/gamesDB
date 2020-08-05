@@ -1,14 +1,23 @@
+
 $(function () {
     var $table = $('dbTable');
     var $name = $('name');
     var $copies = $('copies')
     var $year = $('year')
+    var template = Handlebars.compile()
+    var tableTemp ="<tr><td>{{name}}</td><td>{{copiesSold}}</td><td>{{releaseYear}}</td><td>" +
+        "<button>Remove</button></td></tr>"
 
-    var tableTemp = ""
 
-    function addGame() {
 
-    }
+        function addGame(game) {
+            $table.append($("<tr>")
+                .append($("<td>").append(game.name))
+                .append($("<td>").append(game.copiesSold))
+                .append($("<td>").append(game.year))
+                .append($("<button>"))
+            )
+        }
 
     $.ajax({
         type: 'GET',
@@ -19,7 +28,9 @@ $(function () {
                 addGame(game)
             })
         })
-        .fail( function () {alert('error has been had!')})
+        .fail(function () {
+            alert('error has been had!')
+        })
 
     $('#addGame').on('click', () => {
         var game = {
@@ -33,7 +44,7 @@ $(function () {
             data: game
 
         })
-            .done(function (content){
+            .done(function (content) {
                 addGame(content)
             })
             .fail(function () {
