@@ -4,9 +4,9 @@ $(function () {
     var $size = $('#size')
     var $gameID = $('#gameID')
     // var $search = $('#search')
-    var handleTemplate = "        <tr>\n" +
+    var handleTemplate = "<tr>\n" +
         "            <td>\n" +
-        "                {{game}}\n" +
+        "                {{game}}" +
         "            </td>\n" +
         "            <td>\n" +
         "                {{name}}\n" +
@@ -15,11 +15,13 @@ $(function () {
         "                {{size}}\n" +
         "            </td>\n" +
         "            <td>\n" +
-        "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0\">Edit Name</button>\n" +
+        "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0\" data-id='{{devID}}'>Edit Name</button>\n" +
         "            </td>\n" +
-        "<td><button type='button' class='btn btn-info btn-rounded btn-sm m-0 remove' data-id='{{devID}}'>Remove</button></td>" +
-    "            </td>\n" +
-    "        </tr>"
+        "            <td>\n" +
+        "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0\" data-id='{{devID}}'>Remove</button>\n" +
+        "            </td>\n" +
+        "        </tr>"
+
 
 
     $("#search").on("keyup", function () {
@@ -39,7 +41,6 @@ $(function () {
         url: '/all-devs',
         success: function (devs) {
             $.each(devs, function (i, dev) {
-
                     addDev(dev)
                 }
             )
