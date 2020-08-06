@@ -96,7 +96,7 @@ router.get('/reviews', function (req, res, next) {
     res.render('reviews', context);
 });
 
-router.get('all-reviews/', function (req, res, next) {
+router.get('/all-reviews', function (req, res, next) {
     mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = Reviews.gameID) as game, content, rating FROM Reviews', function (err, rows, fields) {
         if (err) {
             console.log(err)
