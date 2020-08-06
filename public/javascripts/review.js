@@ -1,8 +1,8 @@
 $(function () {
     var $table = $('.dbTable');
-    var $name = $('game');
-    var $comment = $('comment')
-    var $rate = $('rate')
+    var $name = $('#gameDrop');
+    var $comment = $('#comment')
+    var $rate = $('#rate')
     var handleTemplate =
             "<tr>\n" +
             "            <td>\n" +
@@ -21,10 +21,12 @@ $(function () {
             "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0\">Remove</button>\n" +
             "            </td>\n" +
             "        </tr>"
+    var games = "<option>{{game}}</option>"
         // $(".reviews").html()
 
         function addGame(game) {
         $table.append(Mustache.render(handleTemplate, game))
+            $name.append(Mustache.render(games, game))
     }
 
     $.ajax({
