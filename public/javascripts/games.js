@@ -39,6 +39,7 @@ $(function () {
     })
 
 
+
     $('#addGame').on('click', () => {
         var game = {
             name: $name.val(),
