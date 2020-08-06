@@ -67,8 +67,7 @@ router.post('/games', function (req, res, next) {
         let query = 'INSERT INTO Video_games(name, releaseYear, copiesSold) VALUES (' + values + ');'
         mysql.pool.query(query, function (error, result, fields) {
             if (error) {
-                // This goes twice for some reason, it just returns out on the second time cause
-                // it runs into an error
+
                 return
 
             }
