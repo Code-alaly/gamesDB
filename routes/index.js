@@ -64,7 +64,7 @@ router.post('/games', function (req, res, next) {
         let copies = body.copies
         let year = body.year
         let values = "'" + name + "'," + copies + ',' + year
-        let query = 'INSERT INTO Video_games(name, releaseYear, copiesSold) VALUES (' + values + ');'
+        let query = 'INSERT INTO Developers(name, releaseYear, copiesSold) VALUES (' + values + ');'
         mysql.pool.query(query, function (error, result, fields) {
             if (error) {
 
@@ -138,17 +138,22 @@ router.delete('/devs-del', function (req, res, next) {
 
 router.post('/devs', function (req, res, next) {
         let body = req.body
-        let gameID = "(select Video_games.gameID from Video_games where Video_games.name = " + body.gameID + ")"
+        let gameID = "(select Video_games.gameID from Video_games where Video_games.name = " + "'" + body.gameID + "'" + ")"
             // body.gameID
-
-
-        let name = body.name
-        // body.name
-        let size = body.size
-
-        let values = "'" + gameID + "', '" + name + "'," + size
-        var query = 'INSERT INTO Developers(gameID, name , size) VALUES (' + values + ');'
-        mysql.pool.query(query, function (error, result, fields) {
+        var sql = `INSERT INTO Developers (
+gameID, name, size
+)
+VALUES (
+((select Video_games.gameID from Video_games where Video_games.name = ?)),?,?
+)`
+        //
+        // let theName = body.name
+        // // body.name
+        // let theSize = body.size
+        // var insert = {gameID: }
+        // let values = "'" + gameID + "', " + name + "," + size
+        // var query = 'INSERT INTO Developers(gameID, name , size) VALUES (select from Video_games where Video_games.name = "\'" + body.gameID + "\'", 'theName', 'theSize\');'
+        mysql.pool.query(sql, [body.gameID, body.name, body.size] ,function (error, result, fields) {
             if (error) {
 
                 return
