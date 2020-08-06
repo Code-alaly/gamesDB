@@ -21,11 +21,13 @@ $(function () {
             "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0\">Remove</button>\n" +
             "            </td>\n" +
             "        </tr>"
-    var games = "<option>{{game}}</option>"
+    var g_template =
+        "<option>{{name}}</option>"
+        // $(".reviews").html()
 
         function addGame(game) {
         $table.append(Mustache.render(handleTemplate, game))
-            $name.append(Mustache.render(games, game))
+
     }
 
     $.ajax({
@@ -39,13 +41,24 @@ $(function () {
                 addGame(game)
             })
         })
+    $.ajax({
+        type: 'GET',
+        url: '/all-games',
+        success: function (games) {
+            $.each(games, function (i, game) {
+
+                $name.append(Mustache.render(g_template, game))
+                }
+            )
+        }
+    })
 
 
     $('#addGame').on('click', () => {
         var game = {
             name: $name.val(),
-            copies: $comment.val(),
-            year: $rate.val()
+            copies: $copies.val(),
+            year: $year.val()
         }
         $.ajax({
             method: 'POST',
