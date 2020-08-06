@@ -58,7 +58,7 @@ router.delete('/games-del', function (req, res, next) {
 })
 
 
-router.post('/games', function (req, res, next)  {
+router.post('/games', function (req, res, next) {
         let body = req.body
         let name = body.name
         let copies = body.copies
@@ -73,10 +73,12 @@ router.post('/games', function (req, res, next)  {
 
             }
 
-            returnObject = {gameID: result.insertId,
+            returnObject = {
+                gameID: result.insertId,
                 name: name,
                 releaseYear: year,
-                copiesSold: copies}
+                copiesSold: copies
+            }
             res.send(returnObject)
         })
 
@@ -118,7 +120,6 @@ router.get('/devs', function (req, res, next) {
 });
 
 
-
 router.get('/genres', function (req, res, next) {
     var context = {}
     mysql.pool.query('SELECT * FROM Genres', function (err, rows, fields) {
@@ -131,7 +132,6 @@ router.get('/genres', function (req, res, next) {
 });
 
 
-
 router.get('/games_genres', function (req, res, next) {
     var context = {}
     mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = games_genres.gameID) as game, (SELECT name FROM Genres WHERE Genres.genreID = games_genres.genreID) as genre FROM games_genres', function (err, rows, fields) {
@@ -142,7 +142,6 @@ router.get('/games_genres', function (req, res, next) {
         res.render('games_genres', context);
     });
 });
-
 
 
 module.exports = router;
