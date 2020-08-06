@@ -15,20 +15,8 @@ router.get('/', function (req, res, next) {
 
 });
 
-router.get('/testin', function (req, res, next) {
-    var context = {};
-
-    mysql.pool.query('SELECT * FROM Video_games', function (err, rows, fields) {
-        results = rows
-        context.results = results
-        context.title = 'Test Database Page'
-        context.about = 'seeing how this goes'
-        res.render('testin', context);
-    });
-});
-
-
 // Gets the games page
+
 router.get('/games', function (req, res, next) {
 
     var context = {}
@@ -67,9 +55,7 @@ router.post('/games', function (req, res, next) {
         let query = 'INSERT INTO Video_games(name, releaseYear, copiesSold) VALUES (' + values + ');'
         mysql.pool.query(query, function (error, result, fields) {
             if (error) {
-
                 return
-
             }
 
             returnObject = {
@@ -147,9 +133,7 @@ router.post('/devs', function (req, res, next) {
         let query = 'INSERT INTO Developers(gameID, name, size) VALUES (' + values + ');'
         mysql.pool.query(query, function (error, result, fields) {
             if (error) {
-
                 return
-
             }
 
             returnObject = {
@@ -165,17 +149,61 @@ router.post('/devs', function (req, res, next) {
     }
 )
 
+// genres page
+
 router.get('/genres', function (req, res, next) {
+
     var context = {}
-    mysql.pool.query('SELECT * FROM Genres', function (err, rows, fields) {
-        results = rows
-        context.results = results
-        context.title = 'Genres'
-        context.description = 'This page shows different genres. This includes the Genre name and a description.'
-        res.render('genres', context);
-    });
+
+    context.title = 'Genres'
+    context.description = 'This page shows different genres. This includes the Genre name and a description.'
+    res.render('genres', context);
+
 });
 
+router.get('/all-genres', function (req, res, next) {
+    mysql.pool.query('SELECT * FROM Genres', function (err, rows, fields) {
+        if (err) {
+            res.send(err)
+        }
+        res.send(rows)
+    })
+})
+
+router.delete('/genres-del', function (req, res, next) {
+    query = `DELETE FROM Genres WHERE genreID = ${req.body.id}`
+    mysql.pool.query(query, function (err, rows) {
+        if (err) {
+            console.log(err)
+        }
+    })
+})
+
+
+router.post('/genres', function (req, res, next) {
+        let body = req.body
+        let name = body.name
+        let description = body.description
+        let values = "'" + name + "'," + description
+        let query = 'INSERT INTO Genres(name, description) VALUES (' + values + ');'
+        mysql.pool.query(query, function (error, result, fields) {
+            if (error) {
+                return
+            }
+
+            returnObject = {
+                genreID: result.insertId,
+                name: name,
+                description: description
+            }
+            res.send(returnObject)
+        })
+
+
+    }
+)
+
+// games_genres page
 
 router.get('/games_genres', function (req, res, next) {
     var context = {}
