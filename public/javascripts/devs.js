@@ -63,27 +63,27 @@ $(function () {
     })
 
 
-    $('#addDev').on('click', () => {
-        var dev = {
-            gameID: $gameID.val(),
-            name: $name.val(),
-            size: $size.val()
-        }
-        $.ajax({
-            method: 'POST',
-            url: '/devs',
-            data: dev,
-            success: function (result) {
-
-                addDev(result)
-            }
-
-        })
-
-            .fail(function () {
-                alert('could not add dev')
-            })
-    })
+    // $('#addDev').on('click', () => {
+    //     var dev = {
+    //         gameID: $gameID.val(),
+    //         name: $name.val(),
+    //         size: $size.val()
+    //     }
+    //     $.ajax({
+    //         method: 'POST',
+    //         url: '/devs',
+    //         data: dev,
+    //         success: function (result) {
+    //
+    //             addDev(result)
+    //         }
+    //
+    //     })
+    //
+    //         .fail(function () {
+    //             alert('could not add dev')
+    //         })
+    // })
 
     //add edit function here
 

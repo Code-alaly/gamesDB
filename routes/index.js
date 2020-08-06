@@ -136,13 +136,6 @@ gameID, name, size
 VALUES (
 ((select Video_games.gameID from Video_games where Video_games.name = ?)),?,?
 )`
-        //
-        // let theName = body.name
-        // // body.name
-        // let theSize = body.size
-        // var insert = {gameID: }
-        // let values = "'" + gameID + "', " + name + "," + size
-        // var query = 'INSERT INTO Developers(gameID, name , size) VALUES (select from Video_games where Video_games.name = "\'" + body.gameID + "\'", 'theName', 'theSize\');'
         mysql.pool.query(sql, [body.gameID, body.name, body.size] ,function (error, result, fields) {
             if (error) {
                 return
