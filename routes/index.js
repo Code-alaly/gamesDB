@@ -119,7 +119,7 @@ router.get('/devs', function (req, res, next) {
 });
 
 router.get('/all-devs', function (req, res, next) {
-    mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = Developers.gameID) as game, name, size FROM Developers', function (err, rows, fields) {
+    mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = Developers.gameID) as game, name, size, devID FROM Developers', function (err, rows, fields) {
         if (err) {
             res.send(err)
         }
