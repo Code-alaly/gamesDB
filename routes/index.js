@@ -105,6 +105,8 @@ router.get('/all-reviews', function (req, res, next) {
         res.send(rows)
     })
 })
+
+router.post()
 // gets the dev page
 
 router.get('/devs', function (req, res, next) {

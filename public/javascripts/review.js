@@ -22,7 +22,6 @@ $(function () {
             "            </td>\n" +
             "        </tr>"
     var games = "<option>{{game}}</option>"
-        // $(".reviews").html()
 
         function addGame(game) {
         $table.append(Mustache.render(handleTemplate, game))
@@ -45,8 +44,8 @@ $(function () {
     $('#addGame').on('click', () => {
         var game = {
             name: $name.val(),
-            copies: $copies.val(),
-            year: $year.val()
+            copies: $comment.val(),
+            year: $rate.val()
         }
         $.ajax({
             method: 'POST',
