@@ -14,16 +14,16 @@
     </tr>
     </thead>
     <tbody id="myTable" class="dbTable">
-    <template  id="reviews">
+    <template  class="reviews">
         <tr>
             <td>
-                {{this.game}}
+                {{game}}
             </td>
             <td>
-                {{this.content}}
+                {{content}}
             </td>
             <td>
-                {{this.rating}}
+                {{rating}}
             </td>
             <td>
                 <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Edit Name</button>
@@ -39,7 +39,7 @@
 
     <div class="form-group">
         <label  for="exampleFormControlSelect1">Video Game</label>
-        <select class="form-control" id="game">
+        <select class="form-control" id="gameDrop">
             {{#each results}}
                 <option>{{this.game}}</option>
             {{/each}}

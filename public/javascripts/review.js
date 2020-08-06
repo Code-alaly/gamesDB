@@ -1,17 +1,36 @@
 $(function () {
     var $table = $('.dbTable');
-    var $name = $('game');
-    var $comment = $('comment')
-    var $rate = $('rate')
-    var handleTemplate = $("#reviews").html()
+    var $name = $('#gameDrop');
+    var $comment = $('#comment')
+    var $rate = $('#rate')
+    var handleTemplate =
+            "<tr>\n" +
+            "            <td>\n" +
+            "                {{game}}\n" +
+            "            </td>\n" +
+            "            <td>\n" +
+            "                {{content}}\n" +
+            "            </td>\n" +
+            "            <td>\n" +
+            "                {{rating}}\n" +
+            "            </td>\n" +
+            "            <td>\n" +
+            "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0\">Edit Name</button>\n" +
+            "            </td>\n" +
+            "            <td>\n" +
+            "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0\">Remove</button>\n" +
+            "            </td>\n" +
+            "        </tr>"
+    var games = "<option>{{game}}</option>"
 
-    function addGame(game) {
+        function addGame(game) {
         $table.append(Mustache.render(handleTemplate, game))
+            $name.append(Mustache.render(games, game))
     }
 
     $.ajax({
         type: 'GET',
-        url: '/all-reveiws',
+        url: '/all-reviews',
 
     })
         .done(function (games) {
@@ -25,8 +44,8 @@ $(function () {
     $('#addGame').on('click', () => {
         var game = {
             name: $name.val(),
-            copies: $copies.val(),
-            year: $year.val()
+            copies: $comment.val(),
+            year: $rate.val()
         }
         $.ajax({
             method: 'POST',

@@ -109,13 +109,14 @@ router.get('/all-reviews', function (req, res, next) {
 // gets the dev page
 
 router.get('/devs', function (req, res, next) {
-
     var context = {}
-
-    context.title = 'Developers'
-    context.description = 'This page shows the Developers. You can search for developers and update names if they change.'
-    res.render('devs', context);
-
+    mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = Developers.gameID) as game, name, size FROM Developers', function (err, rows, fields) {
+        results = rows
+        context.results = results
+        context.title = 'Developers'
+        context.description = 'This page shows the Developers. \n You can search for developers and update names if they change.'
+        res.render('devs', context);
+    });
 });
 
 router.get('/all-devs', function (req, res, next) {
