@@ -105,19 +105,64 @@ router.get('/all-reviews', function (req, res, next) {
         res.send(rows)
     })
 })
+
 // gets the dev page
 
 router.get('/devs', function (req, res, next) {
+
     var context = {}
-    mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = Developers.gameID) as game, name, size FROM Developers', function (err, rows, fields) {
-        results = rows
-        context.results = results
-        context.title = 'Developers'
-        context.description = 'This page shows the Developers. \n You can search for developers and update names if they change.'
-        res.render('devs', context);
-    });
+
+    context.title = 'Developers'
+    context.description = 'This page shows the Developers. You can search for developers and update names if they change.'
+    res.render('devs', context);
+
 });
 
+router.get('/all-devs', function (req, res, next) {
+    mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = Developers.gameID) as game, name, size FROM Developers', function (err, rows, fields) {
+        if (err) {
+            res.send(err)
+        }
+        res.send(rows)
+    })
+})
+
+router.delete('/devs-del', function (req, res, next) {
+    query = `DELETE FROM Developers WHERE gameID = ${req.body.id}`
+    mysql.pool.query(query, function (err, rows) {
+        if (err) {
+            console.log(err)
+        }
+    })
+})
+
+
+router.post('/devs', function (req, res, next) {
+        let body = req.body
+        let gameID = body.gameID
+        let name = body.name
+        let size = body.size
+        let values = "'" + gameID + "'," + name + ',' + size
+        let query = 'INSERT INTO Developers(gameID, name, size) VALUES (' + values + ');'
+        mysql.pool.query(query, function (error, result, fields) {
+            if (error) {
+
+                return
+
+            }
+
+            returnObject = {
+                devID: result.insertId,
+                gameID: gameID,
+                name: name,
+                size: size
+            }
+            res.send(returnObject)
+        })
+
+
+    }
+)
 
 router.get('/genres', function (req, res, next) {
     var context = {}
