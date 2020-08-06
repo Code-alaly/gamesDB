@@ -58,20 +58,29 @@ router.delete('/games-del', function (req, res, next) {
 })
 
 
-router.post('/games', (req, res, next) => {
+router.post('/games', function (req, res, next)  {
         let body = req.body
         let name = body.name
         let copies = body.copies
         let year = body.year
         let values = "'" + name + "'," + copies + ',' + year
         let query = 'INSERT INTO Video_games(name, releaseYear, copiesSold) VALUES (' + values + ');'
-        mysql.pool.query(query, function (error, rows) {
+        mysql.pool.query(query, function (error, result, fields) {
             if (error) {
-                console.log(error)
+                // This goes twice for some reason, it just returns out on the second time cause
+                // it runs into an error
+                return
 
             }
 
+            returnObject = {gameID: result.insertId,
+                name: name,
+                releaseYear: year,
+                copiesSold: copies}
+            res.send(returnObject)
         })
+
+
     }
 )
 // gets the review page
@@ -81,7 +90,6 @@ router.get('/reviews', function (req, res, next) {
     var context = {}
 
 
-    context.results = results
     context.title = 'Reviews'
     context.description = 'This page will be for showing the reviews that we have, plus adding some on'
     res.render('reviews', context);

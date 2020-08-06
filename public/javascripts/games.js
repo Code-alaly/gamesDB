@@ -3,23 +3,23 @@ $(function () {
     var $name = $('#name');
     var $copies = $('#copies')
     var $year = $('#year')
-    var handleTemplate = "" +
+    // var $search = $('#search')
+    var handleTemplate =
+        "" +
         "<tr>" +
-        "<button>Remove</button>" +
         "<td>{{name}}</td>" +
         "<td>{{releaseYear}}</td>" +
         "<td>{{copiesSold}}</td>" +
         "<td><button type='button' class='btn btn-info btn-rounded btn-sm m-0 remove' data-id='{{gameID}}'>Remove</button></td>" +
         "</tr>"
 
-    function searchable() {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
+
+    $("#search").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $(".dbTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
-    };
+    })
 
 
     function addGame(game) {
@@ -32,10 +32,9 @@ $(function () {
         success: function (games) {
             $.each(games, function (i, game) {
 
-                addGame(game)
-            }
+                    addGame(game)
+                }
             )
-            searchable()
         }
     })
 
@@ -49,13 +48,14 @@ $(function () {
         $.ajax({
             method: 'POST',
             url: '/games',
-            data: game
+            data: game,
+            success: function (result) {
+
+                addGame(result)
+            }
 
         })
-            .done(function (content) {
-                addGame(content)
-                searchable()
-            })
+
             .fail(function () {
                 alert('could not add order')
             })
