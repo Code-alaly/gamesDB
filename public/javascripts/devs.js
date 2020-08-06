@@ -2,7 +2,7 @@ $(function () {
     var $table = $('.dbTable');
     var $name = $('#name');
     var $size = $('#size')
-    var $gameID = $('#gameID')
+    var $gameID = $('#gameDrop')
     // var $search = $('#search')
     var handleTemplate = "        <tr>\n" +
         "            <td>\n" +
@@ -20,6 +20,9 @@ $(function () {
         "<td><button type='button' class='btn btn-info btn-rounded btn-sm m-0 remove' data-id='{{devID}}'>Remove</button></td>" +
     "            </td>\n" +
     "        </tr>"
+
+    var g_template =
+        "<option>{{name}}</option>"
 
 
     $("#search").on("keyup", function () {
@@ -41,6 +44,18 @@ $(function () {
             $.each(devs, function (i, dev) {
 
                     addDev(dev)
+                }
+            )
+        }
+    })
+
+    $.ajax({
+        type: 'GET',
+        url: '/all-games',
+        success: function (games) {
+            $.each(games, function (i, game) {
+
+                    $gameID.append(Mustache.render(g_template, game))
                 }
             )
         }

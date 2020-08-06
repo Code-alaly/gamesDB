@@ -138,11 +138,16 @@ router.delete('/devs-del', function (req, res, next) {
 
 router.post('/devs', function (req, res, next) {
         let body = req.body
-        let gameID = body.gameID
+        let gameID = "(select Video_games.gameID from Video_games where Video_games.name = " + body.gameID + ")"
+            // body.gameID
+
+
         let name = body.name
+        // body.name
         let size = body.size
-        let values = "'" + gameID + "'," + name + ',' + size
-        let query = 'INSERT INTO Developers(gameID, name, size) VALUES (' + values + ');'
+
+        let values = "'" + gameID + "', '" + name + "'," + size
+        var query = 'INSERT INTO Developers(gameID, name , size) VALUES (' + values + ');'
         mysql.pool.query(query, function (error, result, fields) {
             if (error) {
 
