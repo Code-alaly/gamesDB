@@ -17,6 +17,8 @@ router.get('/', function (req, res, next) {
 
 // Gets the games page
 
+
+
 router.get('/games', function (req, res, next) {
 
     var context = {}
@@ -167,6 +169,7 @@ router.get('/genres', function (req, res, next) {
     res.render('genres', context);
 
 });
+
 
 router.get('/all-genres', function (req, res, next) {
     mysql.pool.query('SELECT * FROM Genres', function (err, rows, fields) {
