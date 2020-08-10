@@ -67,7 +67,7 @@ $(function () {
 
         })
             .done(function (content) {
-                addGame(content)
+                addGawme(content)
             })
             .fail(function () {
                 alert('could not add order')

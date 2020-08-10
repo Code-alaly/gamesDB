@@ -18,7 +18,7 @@ $(function () {
         "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0\" data-id='{{devID}}'>Edit Name</button>\n" +
         "            </td>\n" +
         "            <td>\n" +
-        "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0\" data-id='{{devID}}'>Remove</button>\n" +
+        "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id='{{devID}}'>Remove</button>\n" +
         "            </td>\n" +
         "        </tr>"
 
@@ -63,27 +63,27 @@ $(function () {
     })
 
 
-    // $('#addDev').on('click', () => {
-    //     var dev = {
-    //         gameID: $gameID.val(),
-    //         name: $name.val(),
-    //         size: $size.val()
-    //     }
-    //     $.ajax({
-    //         method: 'POST',
-    //         url: '/devs',
-    //         data: dev,
-    //         success: function (result) {
-    //
-    //             addDev(result)
-    //         }
-    //
-    //     })
-    //
-    //         .fail(function () {
-    //             alert('could not add dev')
-    //         })
-    // })
+    $('#addDev').on('click', () => {
+        var dev = {
+            gameID: $gameID.val(),
+            name: $name.val(),
+            size: $size.val()
+        }
+        $.ajax({
+            method: 'POST',
+            url: '/devs',
+            data: dev,
+            success: function (result) {
+
+                addDev(result)
+            }
+
+        })
+
+            .fail(function () {
+                alert('could not add dev')
+            })
+    })
 
     //add edit function here
 

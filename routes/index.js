@@ -128,8 +128,10 @@ router.delete('/devs-del', function (req, res, next) {
 
 router.post('/devs', function (req, res, next) {
         let body = req.body
-        let gameID = "(select Video_games.gameID from Video_games where Video_games.name = " + "'" + body.gameID + "'" + ")"
+        let gameID = body.gameID
             // body.gameID
+        let name = body.name
+        let size = body.size
         var sql = `INSERT INTO Developers (
 gameID, name, size
 )
