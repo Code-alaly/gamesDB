@@ -145,7 +145,7 @@ VALUES (
 
             returnObject = {
                 devID: result.insertId,
-                gameID: gameID,
+                game: gameID,
                 name: name,
                 size: size
             }
