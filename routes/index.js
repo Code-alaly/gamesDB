@@ -52,7 +52,7 @@ router.post('/games', function (req, res, next) {
         let copies = body.copies
         let year = body.year
         let values = "'" + name + "'," + copies + ',' + year
-        let query = 'INSERT INTO Developers(name, releaseYear, copiesSold) VALUES (' + values + ');'
+        let query = 'INSERT INTO Video_games(name, releaseYear, copiesSold) VALUES (' + values + ');'
         mysql.pool.query(query, function (error, result, fields) {
             if (error) {
 
