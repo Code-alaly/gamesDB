@@ -57,12 +57,12 @@ $(function () {
     $('#addGame').on('click', () => {
         var game = {
             name: $name.val(),
-            copies: $copies.val(),
-            year: $year.val()
+            content: $comment.val(),
+            rating: $rate.val()
         }
         $.ajax({
             method: 'POST',
-            url: '/games',
+            url: '/reviews',
             data: game
 
         })

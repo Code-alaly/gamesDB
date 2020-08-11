@@ -18,7 +18,6 @@ router.get('/', function (req, res, next) {
 // Gets the games page
 
 
-
 router.get('/games', function (req, res, next) {
 
     var context = {}
@@ -96,6 +95,35 @@ router.get('/all-reviews', function (req, res, next) {
     })
 })
 
+router.post('/reviews', function (req, res, next) {
+    let body = req.body
+    let gameID = body.name
+    // body.gameID
+    let content = body.content
+    let rating = body.rating
+    var sql = `INSERT INTO Reviews (
+gameID, content, rating
+)
+VALUES (
+((select Video_games.gameID from Video_games where Video_games.name = ?)),?,?
+)`
+
+    mysql.pool.query(sql, [gameID, content, rating], function (error, result, fields) {
+        if (error) {
+            return
+        }
+
+        returnObject = {
+            devID: result.insertId,
+            game: gameID,
+            content: content,
+            rating: rating
+        }
+        res.send(returnObject)
+    })
+
+})
+
 
 // gets the dev page
 
@@ -119,7 +147,7 @@ router.get('/all-devs', function (req, res, next) {
 })
 
 router.delete('/devs-del', function (req, res, next) {
-    query = `DELETE FROM Developers WHERE gameID = ${req.body.id}`
+    var query = `DELETE FROM Developers WHERE gameID = ${req.body.id}`
     mysql.pool.query(query, function (err, rows) {
         if (err) {
             console.log(err)
@@ -131,7 +159,7 @@ router.delete('/devs-del', function (req, res, next) {
 router.post('/devs', function (req, res, next) {
         let body = req.body
         let gameID = body.gameID
-            // body.gameID
+        // body.gameID
         let name = body.name
         let size = body.size
         var sql = `INSERT INTO Developers (
@@ -140,7 +168,7 @@ gameID, name, size
 VALUES (
 ((select Video_games.gameID from Video_games where Video_games.name = ?)),?,?
 )`
-        mysql.pool.query(sql, [body.gameID, body.name, body.size] ,function (error, result, fields) {
+        mysql.pool.query(sql, [body.gameID, body.name, body.size], function (error, result, fields) {
             if (error) {
                 return
             }
