@@ -3,24 +3,66 @@ $(function () {
     var $name = $('#gameDrop');
     var $comment = $('#comment')
     var $rate = $('#rate')
-    var handleTemplate =
-            "<tr>\n" +
-            "            <td>\n" +
-            "                {{game}}\n" +
-            "            </td>\n" +
-            "            <td>\n" +
-            "                {{content}}\n" +
-            "            </td>\n" +
-            "            <td>\n" +
-            "                {{rating}}\n" +
-            "            </td>\n" +
-            "            <td>\n" +
-            "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 edit\">Edit Name</button>\n" +
-            "            </td>\n" +
-            "            <td>\n" +
-            "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id='{{reviewID}}'>Remove</button>\n" +
-            "            </td>\n" +
-            "        </tr>"
+    var handleTemplate = "<tr>\n" +
+        "    <td>\n" +
+        "        {{game}}\n" +
+        "    </td>\n" +
+        "    <td>\n" +
+        "        {{content}}\n" +
+        "    </td>\n" +
+        "    <td>\n" +
+        "        {{rating}}\n" +
+        "    </td>\n" +
+        "    <td>\n" +
+        "        <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 togg\" data-id=\"{{devID}}\">Edit Name</button>\n" +
+        "    </td>\n" +
+        "    <td>\n" +
+        "        <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id=\"{{devID}}\">Remove</button>\n" +
+        "    </td>\n" +
+        "</tr>\n" +
+        "<tr style='display: none'>\n" +
+        "    <td>\n" +
+        "                <span>\n" +
+        "                Review:\n" +
+        "            </span>\n" +
+        "        <input class=\" form-control edit name\">\n" +
+        "    </td>\n" +
+        "    <td>\n" +
+        "                <span>\n" +
+        "                    Rating:\n" +
+        "                </span>\n" +
+        "        <select class=\"form-control edit rate\">\n" +
+        "            <option>1</option>\n" +
+        "            <option>2</option>\n" +
+        "            <option>3</option>\n" +
+        "            <option>4</option>\n" +
+        "            <option>5</option>\n" +
+        "        </select>\n" +
+        "    </td>\n" +
+        "    <td>\n" +
+        "        <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0\">Submit</button>\n" +
+        "    </td>\n" +
+        "    <td>\n" +
+        "        <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 togg\" >Cancel</button>\n" +
+        "    </td>\n" +
+        "</tr>"
+            // "<tr>\n" +
+            // "            <td>\n" +
+            // "                {{game}}\n" +
+            // "            </td>\n" +
+            // "            <td>\n" +
+            // "                {{content}}\n" +
+            // "            </td>\n" +
+            // "            <td>\n" +
+            // "                {{rating}}\n" +
+            // "            </td>\n" +
+            // "            <td>\n" +
+            // "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 edit\">Edit Name</button>\n" +
+            // "            </td>\n" +
+            // "            <td>\n" +
+            // "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id='{{reviewID}}'>Remove</button>\n" +
+            // "            </td>\n" +
+            // "        </tr>"
     var g_template =
         "<option>{{name}}</option>"
 
@@ -113,7 +155,8 @@ $(function () {
 
     $table.on('click', '.edit', function () {
         var $tr = $(this).closest('tr')
-        $tr.append(editTemplate)
+        $(editTemplate).insertAfter($tr)
+        // $tr.append(editTemplate)
         // $.ajax({
         //     type: 'delete',
         //     url: '/reviews-del',
