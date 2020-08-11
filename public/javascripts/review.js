@@ -15,10 +15,10 @@ $(function () {
             "                {{rating}}\n" +
             "            </td>\n" +
             "            <td>\n" +
-            "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0\">Edit Name</button>\n" +
+            "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 \">Edit Name</button>\n" +
             "            </td>\n" +
             "            <td>\n" +
-            "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0\">Remove</button>\n" +
+            "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id='{{reviewID}}'>Remove</button>\n" +
             "            </td>\n" +
             "        </tr>"
     var g_template =
@@ -77,7 +77,7 @@ $(function () {
         var $tr = $(this).closest('tr')
         $.ajax({
             type: 'delete',
-            url: '/games-del',
+            url: '/reviews-del',
             data: {id: $(this).attr('data-id')}
 
         })

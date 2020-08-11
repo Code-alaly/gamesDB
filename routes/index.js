@@ -86,7 +86,7 @@ router.get('/reviews', function (req, res, next) {
 });
 
 router.get('/all-reviews', function (req, res, next) {
-    mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = Reviews.gameID) as game, content, rating FROM Reviews', function (err, rows, fields) {
+    mysql.pool.query('SELECT reviewID, (SELECT name FROM Video_games WHERE Video_games.gameID = Reviews.gameID) as game, content, rating FROM Reviews', function (err, rows, fields) {
         if (err) {
             console.log(err)
 
@@ -124,7 +124,14 @@ VALUES (
 
 })
 
-
+router.delete('/reviews-del', function (req, res, next) {
+    var query = `DELETE FROM Reviews WHERE reviewID = ${req.body.id}`
+    mysql.pool.query(query, function (err, rows) {
+        if (err) {
+            console.log(err)
+        }
+    })
+})
 // gets the dev page
 
 router.get('/devs', function (req, res, next) {
