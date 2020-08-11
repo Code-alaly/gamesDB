@@ -20,7 +20,7 @@
     </tr>
     </thead>
     <tbody id="dbTable" class="dbTable">
-    <template id="devs-template" type="">
+    <template id="devs-template">
         <tr>
             <td>
                 {{game}}
@@ -36,6 +36,32 @@
             </td>
             <td>
                 <button type="button" class="btn btn-info btn-rounded btn-sm m-0" data-id="{{devID}}">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>
+                Review:
+            </span>
+                <input class=" form-control edit name">
+            </td>
+            <td>
+                <span>
+                    Rating:
+                </span>
+                <select class="form-control edit rate">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </td>
+            <td>
+                <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Submit</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info btn-rounded btn-sm m-0" >Cancel</button>
             </td>
         </tr>
     </template>
