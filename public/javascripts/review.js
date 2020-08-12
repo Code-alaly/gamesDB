@@ -20,7 +20,7 @@ $(function () {
         "        <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id=\"{{devID}}\">Remove</button>\n" +
         "    </td>\n" +
         "</tr>\n" +
-        "<tr style='display: none'>\n" +
+        "<tr style='display: none' class='edit'>\n" +
         "    <td>\n" +
         "                <span>\n" +
         "                Review:\n" +
@@ -99,6 +99,14 @@ $(function () {
 
     }
 
+    togg = function (input) {
+        $(input).on('click', function () {
+
+        })
+    }
+
+
+
     $.ajax({
         type: 'GET',
         url: '/all-reviews',
@@ -153,9 +161,11 @@ $(function () {
             .done($tr.remove())
     })
 
-    $table.on('click', '.edit', function () {
-        var $tr = $(this).closest('tr')
-        $(editTemplate).insertAfter($tr)
+    $table.on('click', '.togg', function () {
+        // var
+         $(this).closest('tr').next('.edit').toggle()
+        // $tr.next('#edit').toggle()
+        // $tr.toggle()
         // $tr.append(editTemplate)
         // $.ajax({
         //     type: 'delete',
