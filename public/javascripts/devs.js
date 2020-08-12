@@ -14,9 +14,7 @@ $(function () {
         "            <td>\n" +
         "                {{size}}\n" +
         "            </td>\n" +
-        "            <td>\n" +
-        "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0\" data-id='{{devID}}'>Edit Name</button>\n" +
-        "            </td>\n" +
+
         "            <td>\n" +
         "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id='{{ID}}'>Remove</button>\n" +
         "            </td>\n" +

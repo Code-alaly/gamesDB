@@ -3,7 +3,7 @@ $(function () {
     var $name = $('#gameDrop');
     var $comment = $('#comment')
     var $rate = $('#rate')
-    var handleTemplate = "<tr>\n" +
+    var handleTemplate = "<tr class='searchable'>\n" +
         "    <td>\n" +
         "        {{game}}\n" +
         "    </td>\n" +
@@ -82,7 +82,12 @@ $(function () {
         $table.append(Mustache.render(handleTemplate, game))
 
     }
-
+    $("#search").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $(".dbTable .searchable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    })
     togg = function (input) {
         $(input).on('click', function () {
 
