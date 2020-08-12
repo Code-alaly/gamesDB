@@ -43,7 +43,7 @@ $(function () {
         "        <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0\">Submit</button>\n" +
         "    </td>\n" +
         "    <td>\n" +
-        "        <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 togg\" >Cancel</button>\n" +
+        "        <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 cancel\" >Cancel</button>\n" +
         "    </td>\n" +
         "</tr>"
             // "<tr>\n" +
@@ -163,16 +163,12 @@ $(function () {
 
     $table.on('click', '.togg', function () {
         // var
-         $(this).closest('tr').next('.edit').toggle()
-        // $tr.next('#edit').toggle()
-        // $tr.toggle()
-        // $tr.append(editTemplate)
-        // $.ajax({
-        //     type: 'delete',
-        //     url: '/reviews-del',
-        //     data: {id: $(this).attr('data-id')}
-        //
-        // })
-            // .done($tr.remove())
+        $(this).closest('tr').next('.edit').toggle()
+
+    })
+    $table.on('click', '.cancel', function () {
+        // var
+        $(this).closest('tr').toggle()
+
     })
 })
