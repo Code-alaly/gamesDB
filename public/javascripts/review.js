@@ -14,7 +14,7 @@ $(function () {
         "        {{rating}}\n" +
         "    </td>\n" +
         "    <td>\n" +
-        "        <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 togg\" data-id=\"{{reviewID}}\">Edit Name</button>\n" +
+        "        <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 togg\" data-id=\"{{reviewID}}\">Edit values</button>\n" +
         "    </td>\n" +
         "    <td>\n" +
         "        <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id=\"{{devID}}\">Remove</button>\n" +
