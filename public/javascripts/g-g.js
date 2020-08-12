@@ -91,4 +91,16 @@ $(function () {
         })
             .done($tr.remove())
     })
+    $('#addGenre').on('click', function () {
+        var toAdd = {
+            game : $name.val(),
+            genre : $genre.val()
+        }
+        $.ajax({
+            method: 'POST',
+            url: '/games_genres',
+            data: toAdd
+        })
+            .done(function (content) {addGame(content)})
+    })
 })

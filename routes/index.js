@@ -114,7 +114,7 @@ VALUES (
         }
 
         returnObject = {
-            devID: result.insertId,
+            reviewID: result.insertId,
             game: gameID,
             content: content,
             rating: rating
@@ -262,25 +262,25 @@ router.post('/genres', function (req, res, next) {
 )
 
 // games_genres page
+//
+// router.get('/games_genres', function (req, res, next) {
+//     var context = {}
+//     mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = games_genres.gameID) as game, (SELECT name FROM Genres WHERE Genres.genreID = games_genres.genreID) as genre FROM games_genres', function (err, rows, fields) {
+//         results = rows
+//         context.results = results
+//         context.title = 'Games-Genres'
+//         context.description = ''
+//         res.render('games_genres', context);
+//     });
+// });
 
 router.get('/games_genres', function (req, res, next) {
-    var context = {}
-    mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = games_genres.gameID) as game, (SELECT name FROM Genres WHERE Genres.genreID = games_genres.genreID) as genre FROM games_genres', function (err, rows, fields) {
-        results = rows
-        context.results = results
-        context.title = 'Games-Genres'
-        context.description = ''
-        res.render('games_genres', context);
-    });
-});
-
-router.get('/games-genres', function (req, res, next) {
 
     var context = {}
 
     context.title = 'Games-Genres'
     context.description = 'This page shows video games and their corresponding genre(s).'
-    res.render('genres', context);
+    res.render('games_genres', context);
 
 });
 router.get('/all-gg', function (req, res, next) {
@@ -299,6 +299,28 @@ router.delete('/gg-del', function (req, res, next) {
             res.send(err)
         }
     })
+})
+
+router.post('games_genres', function (req, res, next) {
+    context = req.body
+    query = `insert into games_genres (genreID, gameID)
+
+values ((select genreID from Genres where Genres.name = ?),
+(select gameID from Video_games where Video_games.name = ?) 
+)`;
+    mysql.pool.query(sql, [context.genre, context.game], function (error, result, fields) {
+        if (error) {
+            return
+        }
+
+        var returnObject = {
+            ggID: result.insertId,
+            name: gameID,
+            genre: genreID,
+        }
+        res.send(returnObject)
+    })
+
 })
 
 
