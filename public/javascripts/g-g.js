@@ -67,7 +67,7 @@ $(function () {
             year: $year.val()
         }
         $.ajax({
-            method: 'POST',
+            type: 'POST',
             url: '/games',
             data: game,
             success: function (result) {
@@ -100,6 +100,7 @@ $(function () {
             method: 'POST',
             url: '/games_genres',
             data: toAdd
+
         })
             .done(function (content) {addGame(content)})
     })

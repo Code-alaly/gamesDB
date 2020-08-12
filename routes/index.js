@@ -283,6 +283,32 @@ router.get('/games_genres', function (req, res, next) {
     res.render('games_genres', context);
 
 });
+
+router.post('/games_genres', function (req, res, next) {
+    context = req.body
+    var gameID = context.game
+    var genreID = context.genre
+        query = `insert into games_genres (genreID, gameID)
+
+
+values ((select genreID from Genres where Genres.name = ?),
+(select gameID from Video_games where Video_games.name = ?) 
+)`;
+    mysql.pool.query(query, [context.genre, context.game], function (error, result, fields) {
+        if (error) {
+            return
+        }
+
+        var returnObject = {
+            ggID: result.insertId,
+            name: gameID,
+            genre: genreID,
+        }
+        res.send(returnObject)
+    })
+
+})
+
 router.get('/all-gg', function (req, res, next) {
     mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = games_genres.gameID) as name, (SELECT name FROM Genres WHERE Genres.genreID = games_genres.genreID) as genre, ggID FROM games_genres', function (err, rows, fields) {
         if (err) {
@@ -301,27 +327,6 @@ router.delete('/gg-del', function (req, res, next) {
     })
 })
 
-router.post('games_genres', function (req, res, next) {
-    context = req.body
-    query = `insert into games_genres (genreID, gameID)
-
-values ((select genreID from Genres where Genres.name = ?),
-(select gameID from Video_games where Video_games.name = ?) 
-)`;
-    mysql.pool.query(sql, [context.genre, context.game], function (error, result, fields) {
-        if (error) {
-            return
-        }
-
-        var returnObject = {
-            ggID: result.insertId,
-            name: gameID,
-            genre: genreID,
-        }
-        res.send(returnObject)
-    })
-
-})
 
 
 module.exports = router;
