@@ -14,7 +14,7 @@ $(function () {
         "        {{rating}}\n" +
         "    </td>\n" +
         "    <td>\n" +
-        "        <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 togg\" data-id=\"{{devID}}\">Edit Name</button>\n" +
+        "        <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 togg\" data-id=\"{{reviewID}}\">Edit Name</button>\n" +
         "    </td>\n" +
         "    <td>\n" +
         "        <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id=\"{{devID}}\">Remove</button>\n" +
@@ -25,13 +25,13 @@ $(function () {
         "                <span>\n" +
         "                Review:\n" +
         "            </span>\n" +
-        "        <input class=\" form-control edit name\">\n" +
+        "        <input class=\" form-control content\">\n" +
         "    </td>\n" +
         "    <td>\n" +
         "                <span>\n" +
         "                    Rating:\n" +
         "                </span>\n" +
-        "        <select class=\"form-control edit rate\">\n" +
+        "        <select class=\"form-control rating\">\n" +
         "            <option>1</option>\n" +
         "            <option>2</option>\n" +
         "            <option>3</option>\n" +
@@ -40,29 +40,13 @@ $(function () {
         "        </select>\n" +
         "    </td>\n" +
         "    <td>\n" +
-        "        <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0\">Submit</button>\n" +
+        "        <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 change\" data-id=\"{{reviewID}}\">Submit</button>\n" +
         "    </td>\n" +
         "    <td>\n" +
         "        <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 cancel\" >Cancel</button>\n" +
         "    </td>\n" +
         "</tr>"
-            // "<tr>\n" +
-            // "            <td>\n" +
-            // "                {{game}}\n" +
-            // "            </td>\n" +
-            // "            <td>\n" +
-            // "                {{content}}\n" +
-            // "            </td>\n" +
-            // "            <td>\n" +
-            // "                {{rating}}\n" +
-            // "            </td>\n" +
-            // "            <td>\n" +
-            // "                <button type=\"button\" class=\"btn btn-teal btn-rounded btn-sm m-0 edit\">Edit Name</button>\n" +
-            // "            </td>\n" +
-            // "            <td>\n" +
-            // "                <button type=\"button\" class=\"btn btn-info btn-rounded btn-sm m-0 remove\" data-id='{{reviewID}}'>Remove</button>\n" +
-            // "            </td>\n" +
-            // "        </tr>"
+
     var g_template =
         "<option>{{name}}</option>"
 
@@ -77,7 +61,7 @@ $(function () {
         "                <span>\n" +
         "                    Rating:\n" +
         "                </span>\n" +
-        "                <select class=\"form-control rate\">\n" +
+        "                <select class=\"form-control rating\">\n" +
         "                    <option>1</option>\n" +
         "                    <option>2</option>\n" +
         "                    <option>3</option>\n" +
@@ -144,7 +128,7 @@ $(function () {
 
         })
             .done(function (content) {
-                addGawme(content)
+                addGame(content)
             })
             .fail(function () {
                 alert('could not add order')
@@ -161,14 +145,40 @@ $(function () {
             .done($tr.remove())
     })
 
+    var toggleFun = function  (cont) {
+        return $(cont).closest('tr')
+    }
+
     $table.on('click', '.togg', function () {
         // var
-        $(this).closest('tr').next('.edit').toggle()
+        toggleFun(this).next('.edit').toggle()
 
     })
     $table.on('click', '.cancel', function () {
         // var
-        $(this).closest('tr').toggle()
+        toggleFun(this).toggle()
+
+    })
+    $table.on('click', '.change', function () {
+        $tr = $(this).closest('tr')
+        $done = $tr.prev()
+
+        var content = $(this).closest('tr').find('.content').val()
+        var theRating = $(this).closest('tr').find('.rating').val()
+        var review = {
+            reviewID: $(this).attr('data-id'),
+            content: content,
+            rating: theRating
+        }
+        $.ajax({
+            type: 'put',
+            data: review,
+        })
+            .done($tr.toggle(),
+                jQuery($done).find("td:eq(2)").html(theRating),
+                jQuery($done).find("td:eq(1)").html(content)
+            )
+
 
     })
 })

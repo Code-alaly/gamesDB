@@ -132,6 +132,19 @@ router.delete('/reviews-del', function (req, res, next) {
         }
     })
 })
+
+router.put('/reviews', function (req, res, next) {
+    var items = req.body
+    var query = `update Reviews
+    set rating = ?, content = ?
+    where reviewID = ?`
+    mysql.pool.query(query, [items.rating, items.content, items.reviewID], function (error, result) {
+        if (error) {
+            console.log(error)
+            return
+        }
+    })
+})
 // gets the dev page
 
 router.get('/devs', function (req, res, next) {
