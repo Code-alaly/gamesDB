@@ -243,8 +243,8 @@ router.post('/genres', function (req, res, next) {
         let name = body.name
         let description = body.description
         let values = "'" + name + "'," + description
-        let query = 'INSERT INTO Genres(name, description) VALUES (' + values + ');'
-        mysql.pool.query(query, function (error, result, fields) {
+        let query = `INSERT INTO Genres(name, description) VALUES (?,?)`
+        mysql.pool.query(query, [name, description], function (error, result, fields) {
             if (error) {
                 return
             }
