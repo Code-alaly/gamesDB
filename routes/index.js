@@ -269,10 +269,37 @@ router.get('/games_genres', function (req, res, next) {
         results = rows
         context.results = results
         context.title = 'Games-Genres'
-        context.description = 'This page shows video games and their corresponding genre(s).'
+        context.description = ''
         res.render('games_genres', context);
     });
 });
+
+router.get('/games-genres', function (req, res, next) {
+
+    var context = {}
+
+    context.title = 'Games-Genres'
+    context.description = 'This page shows video games and their corresponding genre(s).'
+    res.render('genres', context);
+
+});
+router.get('/all-gg', function (req, res, next) {
+    mysql.pool.query('SELECT (SELECT name FROM Video_games WHERE Video_games.gameID = games_genres.gameID) as name, (SELECT name FROM Genres WHERE Genres.genreID = games_genres.genreID) as genre, ggID FROM games_genres', function (err, rows, fields) {
+        if (err) {
+            res.send(err)
+        }
+        res.send(rows)
+    })
+})
+
+router.delete('/gg-del', function (req, res, next) {
+    query = `DELETE FROM games_genres WHERE ggID = ${req.body.id}`
+    mysql.pool.query(query, function (err, rows, fields) {
+        if (err) {
+            res.send(err)
+        }
+    })
+})
 
 
 module.exports = router;
