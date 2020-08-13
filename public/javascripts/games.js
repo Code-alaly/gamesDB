@@ -50,12 +50,12 @@ $(function () {
             method: 'POST',
             url: '/games',
             data: game,
-            success: function (result) {
 
-                addGame(result)
-            }
 
         })
+            .done(function (result) {
+                addGame(result)
+            })
 
             .fail(function () {
                 alert('could not add order')

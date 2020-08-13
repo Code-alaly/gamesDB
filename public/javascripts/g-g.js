@@ -93,8 +93,8 @@ $(function () {
     })
     $('#addGenre').on('click', function () {
         var toAdd = {
-            game : $name.val(),
-            genre : $genre.val()
+            game: $name.val(),
+            genre: $genre.val()
         }
         $.ajax({
             method: 'POST',
@@ -102,6 +102,8 @@ $(function () {
             data: toAdd
 
         })
-            .done(function (content) {addGame(content)})
+            .done(function (content) {
+                addGame(content)
+            })
     })
 })

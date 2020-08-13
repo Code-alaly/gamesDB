@@ -31,10 +31,12 @@
                 {{size}}
             </td>
             <td>
-                <button type="button" class="btn btn-teal btn-rounded btn-sm m-0 togg" data-id="{{devID}}">Edit Name</button>
+                <button type="button" class="btn btn-teal btn-rounded btn-sm m-0 togg" data-id="{{devID}}">Edit Name
+                </button>
             </td>
             <td>
-                <button type="button" class="btn btn-info btn-rounded btn-sm m-0 remove" data-id="{{devID}}">Remove</button>
+                <button type="button" class="btn btn-info btn-rounded btn-sm m-0 remove" data-id="{{devID}}">Remove
+                </button>
             </td>
         </tr>
         <tr>
@@ -60,7 +62,7 @@
                 <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Submit</button>
             </td>
             <td>
-                <button type="button" class="btn btn-info btn-rounded btn-sm m-0 togg" >Cancel</button>
+                <button type="button" class="btn btn-info btn-rounded btn-sm m-0 togg">Cancel</button>
             </td>
         </tr>
     </template>
@@ -69,16 +71,16 @@
 
 <h3>Form to Add a New Developer</h3>
 
-<form action="devs" method="post">
+<form>
     <div class="form-group">
-        <label  for="exampleFormControlSelect1">Video Game</label>
+        <label for="exampleFormControlSelect1">Video Game</label>
         <select class="form-control" id="gameDrop">
 
         </select>
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Developer Name</label>
-        <textarea class="form-control" id="name" rows="1" ></textarea>
+        <textarea class="form-control" id="name" rows="1"></textarea>
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Company Size</label>
