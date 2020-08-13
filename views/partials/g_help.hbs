@@ -1,0 +1,59 @@
+<tr>
+    <td>
+        {{{name}}}
+    </td>
+    <td>
+        {{copiesSold}}
+    </td>
+    <td>
+        {{releaseYear}}
+    </td>
+    <td>
+        <button type="button" class="btn btn-info btn-rounded btn-sm m-0 remove data-id='{{gameID}}'">Remove</button>
+    </td>
+</tr>
+
+<!--template for editing for reviews-->
+<tr>
+    <td>
+        {{game}}
+    </td>
+    <td>
+        {{name}}
+    </td>
+    <td>
+        {{size}}
+    </td>
+    <td>
+        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0 togg" data-id="{{reviewID}}">Edit Name</button>
+    </td>
+    <td>
+        <button type="button" class="btn btn-info btn-rounded btn-sm m-0 remove" data-id="{{reviewID}}">Remove</button>
+    </td>
+</tr>
+<tr style="display: none">
+    <td>
+                <span>
+                Review:
+            </span>
+        <input class=" form-control edit name">
+    </td>
+    <td>
+                <span>
+                    Rating:
+                </span>
+        <select class="form-control edit rate">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </td>
+    <td>
+        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Submit</button>
+    </td>
+    <td>
+        <button type="button" class="btn btn-info btn-rounded btn-sm m-0 togg" >Cancel</button>
+    </td>
+</tr>
